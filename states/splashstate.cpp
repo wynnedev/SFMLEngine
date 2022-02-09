@@ -3,15 +3,18 @@
 //
 
 #include "splashstate.hpp"
-#include <sstream>
-#include <iostream>
 #include "definitions.hpp"
+#include "exitstate.hpp"
+#include "logger.hpp"
+
+IE::Logger SplashStateLogger = IE::Logger::Instance();
 
 IE::SplashState::SplashState(IE::GameDataPtr data) : _data( data ) {
 
 }
 void IE::SplashState::Init() {
-    this->_data->assets.LoadTexture( "Splash_State_Background", SPLACH_SCENE_BACKGROUND_FILE_PATH);
+    this->_data->assets.LoadTexture( "Splash_State_Background",
+                                  SPLASH_SCENE_BACKGROUND_FILE_PATH);
     _background.setTexture(this->_data->assets.GetTexture("Splash_State_Background"));
 }
 
@@ -20,16 +23,17 @@ void IE::SplashState::HandleInput() {
 
     //handle close window during splash
     while( this->_data->window.pollEvent(event)){
-        if(sf::Event::Closed == event.type){
-            this->_data->window.close( );
-        }
+        if(sf::Event::Closed == event.type) {
+        this->_data->window.close();
+      }
     }
 }
 
 void IE::SplashState::Update(float deltaTime) {
+
     if( this->_clock.getElapsedTime().asSeconds() > SPLASH_STATE_DISPLAY_TIME){
-        //goto main menu
-        std::cout << "Go To Main Menu" << std::endl;
+        _data->machine.PushState(
+          StatePtr( new ExitState(this->_data)));
     }
 }
 

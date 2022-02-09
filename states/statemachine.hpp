@@ -8,12 +8,14 @@
 #include <memory>
 #include <stack>
 #include "state.hpp"
+#include "logger.hpp"
 
 namespace IE {
     typedef std::unique_ptr<State> StatePtr;
     class StateMachine {
     public:
-        StateMachine(){};
+        StateMachine(){
+      };
         ~StateMachine(){};
         void PushState( StatePtr state, bool replaceState = true );
         void PopState();
@@ -27,6 +29,7 @@ namespace IE {
         bool _replaceState;
         bool _popState;
         bool _pushState;
+        IE::Logger _logger = IE::Logger::Instance();
     };
 }
 

@@ -3,6 +3,7 @@
 //
 
 #include "statemachine.hpp"
+#include "logger.hpp"
 
 namespace IE{
     void StateMachine::PushState( StatePtr state, bool replaceState ) {
@@ -16,7 +17,10 @@ namespace IE{
     }
 
     void StateMachine::ProcessStack() {
-        if(this->_pushState && !this->_states.empty()){
+
+        //logic to remove state
+        if(this->_popState && !this->_states.empty()){
+            _logger.SendMessage(PRIORITY::INFO, "State Removed");
             this->_states.pop();
 
             //If stack is not empty after pop resume the next state
@@ -27,13 +31,19 @@ namespace IE{
             this->_popState = false;
         }
 
+        //logic to push state
         if( this->_pushState ){
+          _logger.SendMessage(PRIORITY::INFO, "State Pushed");
             if ( !this->_states.empty()){
-                this->_states.pop();
-            }
+              // replace state
+                if(!this->_replaceState){
+                  this->_states.pop();
+                }
 
-            else{
-                this->_states.top()->Pause();
+                //top state is paused if adding without replacing
+                else{
+                  this->_states.top()->Pause();
+                }
             }
 
             this->_states.push( std::move( this->_state ));
@@ -42,5 +52,7 @@ namespace IE{
         }
     }
 
-    StatePtr &StateMachine::GetActiveState() {return this->_states.top();}
+    StatePtr &StateMachine::GetActiveState() {
+      return this->_states.top();
+    }
 }

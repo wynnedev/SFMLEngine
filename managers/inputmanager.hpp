@@ -13,7 +13,7 @@ namespace IE {
         InputManager() = default;
         ~InputManager() = default;
 
-        bool IsSpritClicked( sf::Sprite object, sf::Mouse::Button button, sf::RenderWindow );
+        bool IsSpriteClicked( sf::Sprite object, sf::Mouse::Button button, sf::RenderWindow );
         sf::Vector2i GetMousePosition( sf::RenderWindow & window );
     };
 }

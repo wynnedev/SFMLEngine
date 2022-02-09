@@ -1,0 +1,10 @@
+//
+// Created by 200458668 on 2/5/2022.
+//
+
+#ifndef SFML_ENGINE_MAINMENUSTATE_HPP
+#define SFML_ENGINE_MAINMENUSTATE_HPP
+
+class MainMenuState {};
+
+#endif // SFML_ENGINE_MAINMENUSTATE_HPP

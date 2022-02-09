@@ -8,6 +8,8 @@
 ///TODO IMPLEMENT ACTOR PATTERN FOR IN GAME OBJECTS
 ///TODO Update state class for error handling
 
+#include <string>
+
 namespace IE {
     class State {
     public:
@@ -18,8 +20,10 @@ namespace IE {
 
         virtual void Pause() {}
         virtual void Resume() {}
+        virtual std::string ShowState() {};
 
     private:
+        std::string _stateString;
     };
 };
 
