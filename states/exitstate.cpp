@@ -4,7 +4,7 @@
 
 #include "exitstate.hpp"
 #include "definitions.hpp"
-#include "logger.hpp"
+#include "utils/logger.hpp"
 
 IE::Logger ExitStatelogger = IE::Logger::Instance();
 

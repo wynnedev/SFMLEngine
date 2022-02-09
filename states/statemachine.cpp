@@ -3,7 +3,7 @@
 //
 
 #include "statemachine.hpp"
-#include "logger.hpp"
+#include "utils/logger.hpp"
 
 namespace IE{
     void StateMachine::PushState( StatePtr state, bool replaceState ) {

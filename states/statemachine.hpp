@@ -5,10 +5,10 @@
 #ifndef SFMLTEST_STATEMACHINE_HPP
 #define SFMLTEST_STATEMACHINE_HPP
 
+#include "state.hpp"
+#include "utils/logger.hpp"
 #include <memory>
 #include <stack>
-#include "state.hpp"
-#include "logger.hpp"
 
 namespace IE {
     typedef std::unique_ptr<State> StatePtr;

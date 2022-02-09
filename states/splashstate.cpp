@@ -5,7 +5,6 @@
 #include "splashstate.hpp"
 #include "definitions.hpp"
 #include "exitstate.hpp"
-#include "logger.hpp"
 
 IE::Logger SplashStateLogger = IE::Logger::Instance();
 

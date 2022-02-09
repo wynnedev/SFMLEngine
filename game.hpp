@@ -5,12 +5,13 @@
 #ifndef SFMLTEST_GAME_HPP
 #define SFMLTEST_GAME_HPP
 
+#include "managers/assetmanager.hpp"
+#include "managers/inputmanager.hpp"
+#include "states/statemachine.hpp"
+#include "utils/logger.hpp"
+#include <SFML/Graphics.hpp>
 #include <memory>
 #include <string>
-#include <SFML/Graphics.hpp>
-#include "StateMachine.hpp"
-#include "AssetManager.hpp"
-#include "InputManager.hpp"
 
 namespace IE {
 

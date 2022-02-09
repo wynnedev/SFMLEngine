@@ -3,7 +3,7 @@
 //
 
 #include "game.hpp"
-#include "splashstate.hpp"
+#include "states/splashstate.hpp"
 
 namespace IE{
     Game::Game(int width, int height, std::string title){
@@ -35,8 +35,10 @@ namespace IE{
             while( accumulator >= deltaTime){
                 this->_data->machine.GetActiveState()->HandleInput();
                 this->_data->machine.GetActiveState()->Update( deltaTime );
-                this->_data->machine.GetActiveState()->Draw( deltaTime );
+                accumulator -= deltaTime;
             }
+
+            this->_data->machine.GetActiveState()->Draw( deltaTime );
         }
     }
 }

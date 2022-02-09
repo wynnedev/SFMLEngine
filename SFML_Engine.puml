@@ -1,27 +1,66 @@
 @startuml
 'https://plantuml.com/class-diagram
 
-abstract class AbstractList
-abstract AbstractCollection
-interface List
-interface Collection
+abstract class State{
+  +virtual void Init() = 0;
+  +virtual void HandleInput() = 0;
+  +virtual void Update( float deltaTime ) = 0;
+  +virtual void Draw( float deltaTime ) = 0;
 
-List <|-- AbstractList
-Collection <|-- AbstractCollection
-
-Collection <|- List
-AbstractCollection <|- AbstractList
-AbstractList <|-- ArrayList
-
-class ArrayList {
-Object[] elementData
-size()
+  +virtual void Pause() {}
+  +virtual void Resume() {}
+  +virtual std::string ShowState() {};
+  -std::string _stateString;
 }
 
-enum TimeUnit {
-DAYS
-HOURS
-MINUTES
+class SplashState
+class MainMenuState
+
+class GameState
+class Game{
+  +Game( int, int, std::string)
+  +~Game()
+  -const float deltaTime
+  -sf::clock _clock
+  -GameDataPtr _data
+  -void Run()
 }
+
+class AssetManager{
+    +AssetManager()
+    +~AssetManager()
+    +LoadTexture(std::string, std::string)
+    +LoadFont(std::string, std::string)
+    -std::map<std::string, sf::Texture> _texture;
+    -std::map<std::string, sf::Font> _fonts;
+}
+
+class InputManager{
+    +InputManager() = default
+    +~InputManager() = defualt
+    -bool IsSpriteClicked()
+    -sf::Vector2i GetMousePosition(sf::RenderWindow&)
+}
+
+class Logger{
+    +SendMessage(PRIORITY, std::string)
+    +Logger() = defualt
+    +static Logger& instance()
+    -static Logger* _instance
+
+}
+
+enum PRIORITY{
+  INFO,
+  TROUBLE,
+  ERROR,
+  CRITICAL
+}
+
+class InputManager
+
+State<|-- SplashState
+State<|-- MainMenuState
+State<|-- GameState
 
 @enduml

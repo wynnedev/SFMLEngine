@@ -1,9 +1,24 @@
+#include "definitions.hpp"
+#include "game.hpp"
+#include "utils/logger.hpp"
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include "game.hpp"
-#include "definitions.hpp"
+
+class A{
+    public: 
+    int i;
+};
+
 int main()
 {
-    IE::Game( SCREEN_WIDTH, SCREEN_HEIGHT, "SFML_ENGINE_RUNNING...");
+    A a;
+    std::cout << "result" <<  a.i;
+    IE::Logger logger = IE::Logger::Instance();
+    logger.SendMessage(IE::PRIORITY::INFO, "Program Initialized");
+    IE::Game( SCREEN_HEIGHT, SCREEN_WIDTH, "SFML_ENGINE_RUNNING...");
+    logger.SendMessage(IE::PRIORITY::INFO, "Program Terminated");
+
+
     return EXIT_SUCCESS;
 }
+
